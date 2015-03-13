@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="chatwindow">
+	<head>
+		<meta charset="utf-8"/>
+		<title>Chat Window</title>
+		
+		<!-- 3rd party scripts hosted on google -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+		
+		<!-- our scripts -->
+		<script style="text/javascript" src="scripts/chatwindow.js"></script>
+		
+		<!-- stylesheets -->
+		<link style="text/css" rel="stylesheet" href="css/reset.css"/>
+		<link style="text/css" rel="stylesheet" href="css/chatwindow.css"/>
+	</head>
+	<body ng-controller="MainCtrl">			
+		<form ng-repeat="texter in texters" class="textwindow textername">
+			<p>{{texters[$index].name}}</p>
+			<input type="hidden" ng-model="texters[$index].name" default="texters[$index].name">
+			<input type="text" ng-model="texters[$index].body" placeholder="Type a message">
+			<input type="submit" ng-click="sendMessage($index)" value="Send">
+		</form>
+		<hr>
+		<h3>Chat Window</h3>		
+		<div class="chatwindow" ng-model="chatwindow">
+			<div ng-repeat="element in messages" class="chatwindow-message clearfix">
+				<div  class="chatwindow-name">{{ element.name }}:</div>
+				<div class="chatwindow-body">{{ element.body }}</div>
+				<div id="last-message" ng-if="$last"></div>
+			</div>
+		</div>
+	</body>
+</html>

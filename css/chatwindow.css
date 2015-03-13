@@ -1,0 +1,93 @@
+.chatwindow, .textwindow, textarea, input {
+	min-width: 200px;
+	max-width: 500px;
+	padding: 5px;
+	margin: 20px;
+}
+
+textarea, input {
+	/*border-style: solid;
+	border-width: 2px;
+	border-color: #4A2F04;*/
+	/*width: 100%*/
+}
+
+h3 {
+	font-family: verdana;
+	color: #4A2F04;
+	font-size: 2em;
+	font-weight: bold;
+	margin: 20px;
+}
+
+/* clearfix stuff */ 
+.clearfix:after, .clearfix:before {
+	content: '';
+	display: table;
+}
+
+.clearfix:after {
+	clear: both;
+}
+
+.clearfix {
+	zoom: 1; /* For IE 6/7 (trigger hasLayout) */
+}
+
+
+/*styles for the text-sending forms*/
+
+.textwindow {
+	background-color: #4A2F04;
+	
+}
+
+.textername {
+	color: white;
+	font-family: verdana;
+	font-weight: bold;
+}
+
+
+/*styles for the chat window*/
+
+.chatwindow {
+	background-color: rgba(181,177,71,0.35); /* #B5B147 */
+	vertical-align: bottom;
+	overflow-y: scroll;
+	height: 300px;
+	
+}
+
+.chatwindow-name, .chatwindow-body, .chatwindow-message {
+	padding: 5px;
+	margin: 5px;
+}
+
+.chatwindow-message {
+	background-color: #BDA197;
+}
+
+.chatwindow-name {
+	background-color: #300600;
+	color: white;
+	font-family: verdana;
+	font-style: italic;
+	font-size: 0.75em;
+	text-align: left;
+	clear: both;
+	float: left;
+}
+
+.chatwindow-body {
+	color: #300600;
+	font-family: verdana;
+	text-align: right;
+	float: right;
+}
+
+#last-message {
+	min-height: 10px;
+	float: right;
+}
+
