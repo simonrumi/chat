@@ -25,7 +25,7 @@
 		<hr>
 		<h3>Chat Window</h3>		
 		<div class="chatwindow" ng-model="chatwindow">
-			<div ng-repeat="element in messages" class="chatwindow-message clearfix">
+			<div ng-repeat="element in messages" on-repeat-end class="chatwindow-message clearfix">
 				<div  class="chatwindow-name">{{ element.name }}:</div>
 				<div class="chatwindow-body">{{ element.body }}</div>
 				<div id="last-message" ng-if="$last"></div>

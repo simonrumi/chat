@@ -31,6 +31,22 @@
 		return msgObj;
 	}]);
 		
+	// an attribute to go in the same tag as the ng-repeat directive, which emits an event when ng-repeat is finished
+	app.directive('onRepeatEnd', ['$timeout', function($timeout) {
+		return {
+			restrict: 'A',
+			
+			link: function(scope, element, attrs) {
+				if(scope.$last) {
+					$timeout(function() {
+						console.log('about to send ngRepeatEnded event');
+						scope.$emit('ngRepeatEnded');
+					});
+				}
+			}
+		}
+	}]);
+	
 	
 	// MainCtrl takes messages from texters and displays them, along with the texters' names in the chat window
 	app.controller('MainCtrl', [
@@ -46,17 +62,18 @@
 				var message = $scope.texters[texterIndex].body;
 				if (message) {
 					texter = $scope.texters[texterIndex].name;
-					// $scope.messages.push( {'name': texter, 'body': message} );
 					$scope.texters[texterIndex].body = '';
 					messageManager.addMessage(texter,message);
-					
-					//scroll to the last message entered
-					// ...or at least that's the theory..
-					//..seems to get to the 2nd to last div...more investigation needed here
-					$location.hash('last-message');
-					$anchorScroll();
 				}
 			};
+			
+			//scroll to the last message after the ng-repeat directive has completed adding a new message to the bottom of the chat window
+			$scope.$on('ngRepeatEnded', function(scope, element, attrs) {
+				console.log('received ngRepeatEnded event');
+				
+				$location.hash('last-message');
+				$anchorScroll();
+			});
 		}
 	]);
 	
